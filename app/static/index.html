@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Football Law Bot</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Football Law Bot</h1>
+        <p class="subtitle">Tra cứu luật bóng đá với trích dẫn nguồn</p>
+      </div>
+      <div class="status" id="status">Đang kết nối...</div>
+      <a class="ghost" href="/data">Data Viewer</a>
+    </header>
+
+    <main class="main">
+      <section class="chat">
+        <div class="messages" id="messages">
+          <div class="message system">
+            <div class="bubble">
+              Hỏi về luật bóng đá, mình sẽ trả lời kèm trích dẫn từ nguồn.
+            </div>
+          </div>
+        </div>
+
+        <form class="composer" id="composer">
+          <div class="composer-row">
+            <textarea id="message" placeholder="Nhập câu hỏi..." rows="2" required></textarea>
+            <button type="submit" class="send">Gửi</button>
+          </div>
+          <div class="composer-options">
+            <label>
+              Top K
+              <input type="number" id="topK" min="1" max="20" value="8" />
+            </label>
+            <label>
+              Loại tài liệu
+              <select id="docType">
+                <option value="">Tất cả</option>
+                <option value="laws">Laws</option>
+                <option value="discipline">Discipline</option>
+                <option value="competition">Competition</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <button type="button" class="ghost" id="searchBtn">Chỉ tìm nguồn</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="side">
+        <div class="panel">
+          <h3>Trích dẫn</h3>
+          <div id="citations" class="citations empty">Chưa có trích dẫn</div>
+        </div>
+        <div class="panel">
+          <h3>Hướng dẫn nhanh</h3>
+          <ul>
+            <li>Nhập câu hỏi và bấm Gửi.</li>
+            <li>"Chỉ tìm nguồn" sẽ trả về top-k đoạn liên quan.</li>
+            <li>Trích dẫn hiển thị ở bên phải.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

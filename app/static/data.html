@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Viewer</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="/static/data.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Data Viewer</h1>
+        <p class="subtitle">Xem documents và chunks trong database</p>
+      </div>
+      <div class="actions">
+        <a class="ghost" href="/">Chat UI</a>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Documents</h3>
+          <div class="controls">
+            <label>Limit <input type="number" id="docLimit" value="50" min="1" max="200" /></label>
+            <button class="send" id="loadDocs">Load</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="docsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Doc ID</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Chunks</h3>
+          <div class="controls">
+            <label>Doc ID <input type="number" id="chunkDocId" placeholder="(optional)" /></label>
+            <label>Limit <input type="number" id="chunkLimit" value="50" min="1" max="200" /></label>
+            <button class="send" id="loadChunks">Load</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="chunksTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Doc</th>
+                <th>Section</th>
+                <th>Pages</th>
+                <th>Text</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/data.js"></script>
+</body>
+</html>

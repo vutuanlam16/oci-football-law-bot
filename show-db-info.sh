@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "📊 Database Connection Info"
+echo "================================"
+echo ""
+echo "📝 From .env file:"
+source .env 2>/dev/null || true
+
+echo "  Database: ${POSTGRES_DB:-football_law}"
+echo "  User:     ${POSTGRES_USER:-postgres}"
+echo "  Password: ${POSTGRES_PASSWORD:-postgres}"
+echo "  Port:     5432"
+echo ""
+echo "🔌 Connection strings:"
+echo ""
+echo "  Docker (internal):"
+echo "  postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@db:5432/football_law"
+echo ""
+echo "  Local (from host machine):"
+echo "  postgresql+psycopg://postgres:${POSTGRES_PASSWORD}@localhost:5432/football_law"
+echo ""
+echo "🧪 Test connection from host:"
+echo "  psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/football_law"
+echo ""
+echo "🐳 Or via Docker:"
+echo "  docker compose exec db psql -U postgres -d football_law"
+echo ""

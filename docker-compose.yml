@@ -1,0 +1,92 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16-trixie
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-football_law}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./ops/db/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"  # Expose for local development
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [backend]
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"  # Expose for local development
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    networks: [backend]
+
+  app:
+    ports:
+      - "8000:8000"
+    build:
+      context: .
+      dockerfile: ops/app/Dockerfile
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-prod}
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-football_law}
+      OLLAMA_URL: ${OLLAMA_URL:-http://ollama:11434}
+      CHAT_MODEL: ${CHAT_MODEL:-qwen2.5:3b-instruct}
+      LLM_PROVIDER: ${LLM_PROVIDER:-ollama}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+      EMBED_MODEL: ${EMBED_MODEL:-nomic-embed-text}
+      EMBED_PROVIDER: ${EMBED_PROVIDER:-ollama}
+      GEMINI_EMBED_MODEL: ${GEMINI_EMBED_MODEL:-gemini-embedding-001}
+      EMBED_DIM: ${EMBED_DIM:-768}
+      TOP_K: ${TOP_K:-8}
+      PDF_DIR: ${PDF_DIR:-/data/raw}
+    depends_on:
+      db:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ./data:/data
+    networks: [backend]
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ops/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    networks: [backend, public]
+
+volumes:
+  db_data:
+  ollama_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  backend:
+    driver: bridge
+  public:
+    driver: bridge
