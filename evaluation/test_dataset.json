@@ -1,0 +1,164 @@
+{
+  "test_cases": [
+    {
+      "id": 1,
+      "category": "offside",
+      "question": "Thế nào là việt vị?",
+      "expected_answer": "Cầu thủ ở vị trí việt vị khi ở gần vạch khung thành đối phương hơn cả bóng và cầu thủ đối phương thứ hai tính từ sau (thường là hậu vệ cuối cùng)",
+      "keywords": ["việt vị", "vạch khung thành", "cầu thủ đối phương thứ hai"]
+    },
+    {
+      "id": 2,
+      "category": "offside",
+      "question": "Có việt vị khi nhận bóng từ ném biên không?",
+      "expected_answer": "Không có việt vị khi cầu thủ nhận bóng trực tiếp từ ném biên",
+      "keywords": ["không", "việt vị", "ném biên"]
+    },
+    {
+      "id": 3,
+      "category": "offside",
+      "question": "Nhận bóng từ đá phạt góc có bị việt vị không?",
+      "expected_answer": "Không có việt vị khi nhận bóng trực tiếp từ đá phạt góc",
+      "keywords": ["không", "việt vị", "phạt góc"]
+    },
+    {
+      "id": 4,
+      "category": "offside",
+      "question": "Nhận bóng từ phát bóng của thủ môn có việt vị không?",
+      "expected_answer": "Không có việt vị khi nhận bóng trực tiếp từ phát bóng",
+      "keywords": ["không", "việt vị", "phát bóng"]
+    },
+    {
+      "id": 5,
+      "category": "foul",
+      "question": "Những hành vi nào bị phạt đá phạt trực tiếp?",
+      "expected_answer": "Đá hoặc toan đá đối phương, vấp hoặc toan vấp, đẩy, xô đối phương, đánh hoặc toan đánh, xúc bóng bằng tay",
+      "keywords": ["đá phạt trực tiếp", "đá", "vấp", "đẩy", "xô", "đánh", "xúc bóng"]
+    },
+    {
+      "id": 6,
+      "category": "foul",
+      "question": "Khi nào bị thẻ đỏ?",
+      "expected_answer": "Phạm lỗi nghiêm trọng, cố tình chơi thô bạo, cắn hoặc khạc nhổ vào đối phương, ngăn cản bàn thắng rõ ràng bằng tay, ngăn cản cơ hội ghi bàn rõ ràng bằng phạm lỗi, ngôn ngữ/cử chỉ xúc phạm thô tục",
+      "keywords": ["thẻ đỏ", "phạm lỗi nghiêm trọng", "bạo lực", "ngăn cản"]
+    },
+    {
+      "id": 7,
+      "category": "penalty",
+      "question": "Khi nào được phạt đền?",
+      "expected_answer": "Khi một trong các tình huống phạt đá phạt trực tiếp xảy ra trong vòng cấm địa của đội phạm lỗi",
+      "keywords": ["phạt đền", "vòng cấm", "đá phạt trực tiếp"]
+    },
+    {
+      "id": 8,
+      "category": "penalty",
+      "question": "Thủ môn có được rời khỏi vạch khung thành khi đá phạt đền không?",
+      "expected_answer": "Thủ môn phải đứng trên vạch khung thành, đối diện với người đá phạt đền, giữa hai cột dọc cho đến khi bóng được đá",
+      "keywords": ["thủ môn", "vạch khung thành", "phạt đền"]
+    },
+    {
+      "id": 9,
+      "category": "ball_in_out",
+      "question": "Khi nào bóng được coi là ra ngoài?",
+      "expected_answer": "Bóng ra ngoài khi toàn bộ quả bóng vượt qua hoàn toàn vạch biên hoặc vạch khung thành, dù trên mặt đất hay trên không",
+      "keywords": ["ra ngoài", "toàn bộ", "vạch biên", "vạch khung thành"]
+    },
+    {
+      "id": 10,
+      "category": "ball_in_out",
+      "question": "Bóng chạm vạch biên thì có ra ngoài không?",
+      "expected_answer": "Không, bóng vẫn còn trong khi chạm vạch. Bóng chỉ ra ngoài khi toàn bộ vượt qua hoàn toàn vạch biên",
+      "keywords": ["không", "ra ngoài", "chạm vạch", "toàn bộ"]
+    },
+    {
+      "id": 11,
+      "category": "handball",
+      "question": "Khi nào xúc bóng bằng tay bị phạt?",
+      "expected_answer": "Cầu thủ cố ý chạm bóng bằng tay hoặc cánh tay (trừ thủ môn trong vòng cấm địa của mình)",
+      "keywords": ["xúc bóng", "tay", "cánh tay", "cố ý"]
+    },
+    {
+      "id": 12,
+      "category": "handball",
+      "question": "Thủ môn có được cầm bóng ngoài vòng cấm không?",
+      "expected_answer": "Không, thủ môn chỉ được dùng tay chạm bóng trong vòng cấm địa của đội mình",
+      "keywords": ["không", "thủ môn", "cầm bóng", "vòng cấm"]
+    },
+    {
+      "id": 13,
+      "category": "substitution",
+      "question": "Một trận đấu được thay tối đa bao nhiêu người?",
+      "expected_answer": "Mỗi đội được thay tối đa 3 cầu thủ trong trận đấu chính thức (có thể nhiều hơn tùy quy định giải đấu)",
+      "keywords": ["thay", "3", "cầu thủ"]
+    },
+    {
+      "id": 14,
+      "category": "time",
+      "question": "Một trận đấu kéo dài bao lâu?",
+      "expected_answer": "Một trận đấu có 2 hiệp, mỗi hiệp 45 phút, nghỉ giữa hiệp tối đa 15 phút",
+      "keywords": ["2 hiệp", "45 phút", "nghỉ", "15 phút"]
+    },
+    {
+      "id": 15,
+      "category": "goalkeeper",
+      "question": "Thủ môn có được đá bóng bằng chân không?",
+      "expected_answer": "Có, thủ môn có thể đá bóng bằng chân như các cầu thủ khác",
+      "keywords": ["có", "thủ môn", "đá bóng", "chân"]
+    },
+    {
+      "id": 16,
+      "category": "corner_kick",
+      "question": "Đá phạt góc từ vị trí nào?",
+      "expected_answer": "Đá phạt góc được thực hiện từ góc sân phía bóng ra ngoài",
+      "keywords": ["phạt góc", "góc sân"]
+    },
+    {
+      "id": 17,
+      "category": "throw_in",
+      "question": "Cách thực hiện ném biên đúng quy tắc?",
+      "expected_answer": "Đứng ngoài vạch biên, hai chân chạm đất, dùng hai tay ném bóng từ phía sau qua đầu",
+      "keywords": ["ném biên", "ngoài vạch", "hai chân", "hai tay", "phía sau", "qua đầu"]
+    },
+    {
+      "id": 18,
+      "category": "goal_kick",
+      "question": "Khi nào được phát bóng?",
+      "expected_answer": "Khi bóng ra ngoài vạch khung thành (không phải bàn thắng) và cầu thủ đội tấn công chạm bóng cuối cùng",
+      "keywords": ["phát bóng", "ra ngoài", "vạch khung thành", "đội tấn công"]
+    },
+    {
+      "id": 19,
+      "category": "free_kick",
+      "question": "Phân biệt đá phạt trực tiếp và gián tiếp?",
+      "expected_answer": "Đá phạt trực tiếp có thể ghi bàn trực tiếp, đá phạt gián tiếp phải có cầu thủ khác chạm bóng trước mới được ghi bàn",
+      "keywords": ["trực tiếp", "gián tiếp", "ghi bàn", "chạm bóng"]
+    },
+    {
+      "id": 20,
+      "category": "advantage",
+      "question": "Trọng tài có phải thổi phạt ngay khi có lỗi không?",
+      "expected_answer": "Không, trọng tài có thể cho chơi lợi thế nếu đội bị phạm lỗi đang có lợi thế tấn công",
+      "keywords": ["không", "lợi thế", "phạm lỗi", "tấn công"]
+    }
+  ],
+  "metadata": {
+    "total_questions": 20,
+    "categories": {
+      "offside": 4,
+      "foul": 2,
+      "penalty": 2,
+      "ball_in_out": 2,
+      "handball": 2,
+      "substitution": 1,
+      "time": 1,
+      "goalkeeper": 1,
+      "corner_kick": 1,
+      "throw_in": 1,
+      "goal_kick": 1,
+      "free_kick": 1,
+      "advantage": 1
+    },
+    "created_date": "2026-03-03",
+    "version": "1.0"
+  }
+}

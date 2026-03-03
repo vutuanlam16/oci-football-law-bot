@@ -126,19 +126,75 @@ curl -X POST https://$DOMAIN/chat \
 
 ---
 
-## 7) Notes vận hành (khuyến nghị)
+## 7) Version Control & Conflict Detection
 
-- Không expose Postgres/ollama ra internet.
-- Nếu muốn khóa truy cập API (demo public), thêm Basic Auth trong Caddyfile.
-- Khi update PDF (phiên bản luật mới), hãy ingest thành doc_id mới hoặc có cơ chế versioning (mốc tiếp theo trong roadmap).
+Hệ thống hỗ trợ **quản lý nhiều phiên bản** của cùng một luật (ví dụ: Luật Bóng đá 2023, 2024, 2025) với tính năng:
+
+- ✅ **Version tracking** (major.minor versioning)
+- ✅ **Conflict detection** (phát hiện nhiều phiên bản active)
+- ✅ **Historical queries** (tra cứu luật theo thời điểm)
+- ✅ **Auto-archive** versions cũ
+
+### 7.1. Migrate database để thêm version fields
+
+```bash
+docker compose exec app alembic upgrade head
+```
+
+### 7.2. Kiểm tra conflicts
+
+```bash
+curl http://localhost:8000/api/versions/conflicts
+```
+
+### 7.3. Xem thống kê versions
+
+```bash
+curl http://localhost:8000/api/versions/stats
+```
+
+### 7.4. Chat với version control
+
+```bash
+# Chỉ tìm trong versions active (mặc định)
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"Thế nào là việt vị?","active_only":true}'
+
+# Tìm luật tại thời điểm cụ thể (historical query)
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{"message":"Luật việt vị năm 2023?","active_only":false,"effective_on":"2023-06-01"}'
+```
+
+📖 **Xem chi tiết**: [VERSION_CONTROL.md](VERSION_CONTROL.md)
 
 ---
 
-## 8) Files quan trọng
+## 8) Notes vận hành (khuyến nghị)
+
+- Không expose Postgres/ollama ra internet.
+- Nếu muốn khóa truy cập API (demo public), thêm Basic Auth trong Caddyfile.
+- Khi update PDF (phiên bản luật mới), sử dụng version control để quản lý (xem [VERSION_CONTROL.md](VERSION_CONTROL.md)).
+
+---
+
+## 9) Files quan trọng
 
 - `docker-compose.yml` – toàn bộ stack
 - `ops/caddy/Caddyfile` – reverse proxy + HTTPS
-- `alembic/versions/0001_init.py` – schema + vector index
+- `alembic/versions/` – database migrations
+  - `0001_init.py` – initial schema + vector index
+  - `0002_add_versioning.py` – version control fields
 - `scripts/ingest_folder.py` – ingest PDFs
-- `app/rag/*` – retrieval + embedding + generation (Ollama)
+- `app/rag/versioning.py` – version management service
+- `app/rag/*` – retrieval + embedding + generation (Ollama/Gemini)
+
+**Documentation:**
+- [VERSIONING_QUICK_START.md](VERSIONING_QUICK_START.md) – Bắt đầu nhanh với version control (5 phút)
+- [VERSION_CONTROL.md](VERSION_CONTROL.md) – Hướng dẫn chi tiết version control (user-facing)
+- [VERSIONING_INTERNALS.md](VERSIONING_INTERNALS.md) – Implementation details cho developers
+- [VERSIONING_SLIDES_4.md](VERSIONING_SLIDES_4.md) – Slides trình bày 4 slides (3 phút)
+- [DEMO.md](DEMO.md) – Kịch bản demo cho NLP course
+- [PRESENTATION_SCRIPT.md](PRESENTATION_SCRIPT.md) – Script trình bày chi tiết
 
